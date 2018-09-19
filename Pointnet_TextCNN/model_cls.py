@@ -30,9 +30,9 @@ def get_textcnn_model(text_embedding, filter_sizes, filter_num, is_training, bn_
     sequence_length = text_embedding.get_shape()[1].value
     embedding_size = text_embedding.get_shape()[2].value
     pooled_output = []
+    # [batch_size, sequence_length, embedding_size, 1]
+    text_embedding = tf.expand_dims(text_embedding, -1)
     for i, filter_size in enumerate(filter_sizes):
-        # [batch_size, sequence_length, embedding_size, 1]
-        text_embedding = tf.expand_dims(text_embedding, -1)
         # [batch_size, sequence_length - filter_size + 1, 1, filter_num]
         conved = tf_util.conv2d(text_embedding, filter_num, [filter_size, embedding_size],
                                 scope = 'textcnn_conv_%d'%(i), stride = [1, 1],
@@ -67,22 +67,17 @@ def get_model(sample_num, sample_scale, point_cloud, is_training, filter_sizes, 
         points_features = group_point(point_cloud, idx)
         for j, channel in enumerate(channels):
             # [batch, sample_num, scale, channel]
-            # print(points_features.get_shape())
             points_features = tf_util.conv2d(points_features, channel, [1, 1],
                                              padding = 'VALID', stride = [1, 1],
                                              bn = True, is_training = is_training,
                                              scope='conv_%d_%d'%(i, j), bn_decay = bn_decay,
                                              data_format = 'NHWC')
-        # print(points_features.get_shape())
         # [batch, sample_num, 1, 128]
         points_features = tf.reduce_max(points_features, axis = [2], keep_dims = True, name = 'maxpool')
-        # print(points_features.get_shape())
         # [batch, sample_num, 128]
         points_features = tf.squeeze(points_features, [2])
-        # print(points_features.get_shape())
         # [batch, sample_num, 1, 128]
         points_features = tf.expand_dims(points_features, 2)
-        # print(points_features.get_shape())
         # [batch * sample_num, 1, 128]
         points_features = tf.reshape(points_features, [batch_size * sample_num, 1, channels[-1]])
         feature_collection.append(points_features)
