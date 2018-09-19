@@ -23,7 +23,7 @@ import modelnet_dataset
 import modelnet_h5_dataset
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--gpu', type=int, default=0, help='GPU to use [default: GPU 0]')
+parser.add_argument('--gpu', type=int, default=8, help='GPU to use [default: GPU 0]')
 parser.add_argument('--model', default='model_cls', help='Model name [default: pointnet2_cls_ssg]')
 parser.add_argument('--log_dir', default='log', help='Log dir [default: log]')
 parser.add_argument('--num_point', type=int, default=1024, help='Point Number [default: 1024]')
@@ -37,7 +37,7 @@ parser.add_argument('--decay_rate', type=float, default=0.7, help='Decay rate fo
 parser.add_argument('--normal', action='store_true', help='Whether to use normal information')
 FLAGS = parser.parse_args()
 
-os.environ['CUDA_VISIBLE_DEVICES'] = 
+os.environ['CUDA_VISIBLE_DEVICES'] = '8'
 
 EPOCH_CNT = 0
 
@@ -122,7 +122,7 @@ def train():
             tf.summary.scalar('bn_decay', bn_decay)
 
             # Get model and loss 
-            pred= MODEL.get_model(pointclouds_pl, is_training_pl, bn_decay=bn_decay)
+            pred= MODEL.get_model(128, [16, 32, 64], pointclouds_pl, is_training_pl, [3], 128, bn_decay=bn_decay)
             MODEL.get_loss(pred, labels_pl)
             losses = tf.get_collection('losses')
             total_loss = tf.add_n(losses, name='total_loss')
