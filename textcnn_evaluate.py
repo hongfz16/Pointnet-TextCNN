@@ -73,7 +73,8 @@ def evaluate(num_votes):
         is_training_pl = tf.placeholder(tf.bool, shape=())
 
         # simple model
-        pred = MODEL.get_model(128, [16, 32, 64], pointclouds_pl, is_training_pl, [3], 128)
+        # pred = MODEL.get_model(128, [16, 32, 64], pointclouds_pl, is_training_pl, [3], 128)
+        pred= MODEL.get_model(384, [16, 32, 64, 128], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32, bn_decay=bn_decay)
         MODEL.get_loss(pred, labels_pl)
         losses = tf.get_collection('losses')
         total_loss = tf.add_n(losses, name='total_loss')

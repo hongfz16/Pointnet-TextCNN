@@ -7,6 +7,15 @@
 ## History results
 - 2018.9.19
 ```
+hyperparameters:
+  N: 1024 (total pointcloud number)
+  M: 128 (sampled point number)
+  Ki: [16, 32, 64] (number of knn points)
+  textcnn_kernel: [3] * 128
+  epochs: 251
+  other: remain the same as pointnet2
+```
+```
 eval mean loss: 0.396773
 eval accuracy: 0.882496
 eval avg class acc: 0.846058
