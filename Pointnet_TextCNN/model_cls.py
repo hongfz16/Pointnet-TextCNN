@@ -90,7 +90,7 @@ def get_model(sample_num, sample_scale, point_cloud, is_training, filter_sizes, 
     textcnn_encoded = tf.reshape(textcnn_encoded, [batch_size, sample_num, -1])
     # [batch, sample_num, 1, feature_size]
     global_feature = tf.expand_dims(textcnn_encoded, 2)
-    channels = [256, 512, 1024]
+    channels = [512, 1024]
     for i, channel in enumerate(channels):
         # [batch, sample_num, 1, channel]
         global_feature = tf_util.conv2d(global_feature, channel, [1, 1],

@@ -2,7 +2,8 @@
 
 ## Log
 - 2018.9.18 finish textcnn_train.py and model_cls.py
-- 2018.9.19 run on server; finish textcnn_evaluate.py
+- 2018.9.19 firstly run on server; finish textcnn_evaluate.py
+- 2018.9.20 second run on server finished(takes one night and one day and it crashed in epoch 180)
 
 ## History results
 - 2018.9.19
@@ -59,4 +60,59 @@ range_hood:	0.890
       vase:	0.780
   wardrobe:	0.500
       xbox:	0.700
+```
+- 2018.09.20
+```
+hyperparameters:
+  N: 1024 (total pointcloud number)
+  M: 384 (sampled point number)
+  Ki: [16, 32, 64, 128] (number of knn points)
+  textcnn_kernel: [1,2,3,4] * 32
+  epochs: 251
+  other: remain the same as pointnet2
+```
+```
+eval mean loss: 0.385354
+eval accuracy: 0.895462
+eval avg class acc: 0.864849
+  airplane: 1.000
+   bathtub: 0.820
+       bed: 0.990
+     bench: 0.750
+ bookshelf: 0.910
+    bottle: 0.950
+      bowl: 0.950
+       car: 0.990
+     chair: 0.960
+      cone: 0.900
+       cup: 0.800
+   curtain: 0.800
+      desk: 0.814
+      door: 0.900
+   dresser: 0.709
+flower_pot: 0.200
+ glass_box: 0.940
+    guitar: 0.990
+  keyboard: 1.000
+      lamp: 0.850
+    laptop: 1.000
+    mantel: 0.940
+   monitor: 0.970
+night_stand:  0.791
+    person: 0.950
+     piano: 0.920
+     plant: 0.800
+     radio: 0.800
+range_hood: 0.940
+      sink: 0.700
+      sofa: 0.940
+    stairs: 0.900
+     stool: 0.850
+     table: 0.890
+      tent: 1.000
+    toilet: 0.990
+  tv_stand: 0.860
+      vase: 0.780
+  wardrobe: 0.600
+      xbox: 0.750
 ```
