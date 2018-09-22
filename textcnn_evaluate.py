@@ -21,7 +21,7 @@ import modelnet_dataset
 import modelnet_h5_dataset
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--gpu', type=int, default=8, help='GPU to use [default: GPU 0]')
+parser.add_argument('--gpu', type=int, default=5, help='GPU to use [default: GPU 0]')
 parser.add_argument('--model', default='model_cls', help='Model name. [default: pointnet2_cls_ssg]')
 parser.add_argument('--batch_size', type=int, default=16, help='Batch Size during training [default: 16]')
 parser.add_argument('--num_point', type=int, default=1024, help='Point Number [256/512/1024/2048] [default: 1024]')
@@ -31,7 +31,7 @@ parser.add_argument('--normal', action='store_true', help='Whether to use normal
 parser.add_argument('--num_votes', type=int, default=1, help='Aggregate classification scores from multiple rotations [default: 1]')
 FLAGS = parser.parse_args()
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '8'
+os.environ['CUDA_VISIBLE_DEVICES'] = '5'
 
 BATCH_SIZE = FLAGS.batch_size
 NUM_POINT = FLAGS.num_point
@@ -74,7 +74,7 @@ def evaluate(num_votes):
 
         # simple model
         # pred = MODEL.get_model(128, [16, 32, 64], pointclouds_pl, is_training_pl, [3], 128)
-        pred= MODEL.get_model(384, [16, 32, 64, 128], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32)
+        pred= MODEL.get_model(384, [16, 32, 64, 128, 256], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32)
         MODEL.get_loss(pred, labels_pl)
         losses = tf.get_collection('losses')
         total_loss = tf.add_n(losses, name='total_loss')
