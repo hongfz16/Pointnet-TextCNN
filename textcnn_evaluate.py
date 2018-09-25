@@ -74,7 +74,7 @@ def evaluate(num_votes):
 
         # simple model
         # pred = MODEL.get_model(128, [16, 32, 64], pointclouds_pl, is_training_pl, [3], 128)
-        pred= MODEL.get_model(384, [16, 32, 64, 128, 256], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32)
+        pred= MODEL.get_model(384, [8, 16, 32, 64, 128], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32)
         MODEL.get_loss(pred, labels_pl)
         losses = tf.get_collection('losses')
         total_loss = tf.add_n(losses, name='total_loss')

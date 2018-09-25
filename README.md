@@ -172,3 +172,113 @@ range_hood: 0.900
   wardrobe: 0.400
       xbox: 0.800
 ```
+- 2018.09.24
+```
+hyperparameters:
+  N: 1024 (total pointcloud number)
+  M: 384 (sampled point number)
+  Ki: [16, 32, 64, 128, 256] (number of knn points)
+  textcnn_kernel: [1,2,3,4] * 32
+  epochs: 251
+  other: remain the same as pointnet2
+```
+```
+eval mean loss: 0.410230
+eval accuracy: 0.887763
+eval avg class acc: 0.854023
+  airplane: 1.000
+   bathtub: 0.840
+       bed: 0.960
+     bench: 0.700
+ bookshelf: 0.920
+    bottle: 0.950
+      bowl: 0.950
+       car: 1.000
+     chair: 0.950
+      cone: 0.950
+       cup: 0.750
+   curtain: 0.900
+      desk: 0.791
+      door: 0.850
+   dresser: 0.651
+flower_pot: 0.100
+ glass_box: 0.940
+    guitar: 1.000
+  keyboard: 1.000
+      lamp: 0.900
+    laptop: 1.000
+    mantel: 0.950
+   monitor: 0.980
+night_stand:  0.779
+    person: 0.800
+     piano: 0.930
+     plant: 0.820
+     radio: 0.800
+range_hood: 0.920
+      sink: 0.700
+      sofa: 0.950
+    stairs: 0.900
+     stool: 0.800
+     table: 0.850
+      tent: 0.950
+    toilet: 0.990
+  tv_stand: 0.800
+      vase: 0.790
+  wardrobe: 0.600
+      xbox: 0.750
+```
+- 2018.09.25
+```
+hyperparameters:
+  N: 1024 (total pointcloud number)
+  M: 384 (sampled point number)
+  Ki: [16, 32, 64, 128] (number of knn points)
+  textcnn_kernel: [1,2,3,4] * 32
+  epochs: 251
+  other: remain the same as pointnet2
+```
+```
+eval mean loss: 0.396368
+eval accuracy: 0.893031
+eval avg class acc: 0.856762
+  airplane: 1.000
+   bathtub: 0.840
+       bed: 0.960
+     bench: 0.700
+ bookshelf: 0.910
+    bottle: 0.940
+      bowl: 0.950
+       car: 1.000
+     chair: 0.970
+      cone: 0.950
+       cup: 0.750
+   curtain: 0.900
+      desk: 0.814
+      door: 0.900
+   dresser: 0.698
+flower_pot: 0.200
+ glass_box: 0.930
+    guitar: 0.990
+  keyboard: 1.000
+      lamp: 0.900
+    laptop: 1.000
+    mantel: 0.950
+   monitor: 0.980
+night_stand:  0.849
+    person: 0.800
+     piano: 0.930
+     plant: 0.750
+     radio: 0.750
+range_hood: 0.940
+      sink: 0.700
+      sofa: 0.960
+    stairs: 0.900
+     stool: 0.800
+     table: 0.870
+      tent: 0.950
+    toilet: 0.980
+  tv_stand: 0.840
+      vase: 0.820
+  wardrobe: 0.450
+      xbox: 0.750
+```

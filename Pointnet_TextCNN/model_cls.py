@@ -58,9 +58,10 @@ def get_model(sample_num, sample_scale, point_cloud, is_training, filter_sizes, 
     batch_size = point_cloud.get_shape()[0].value
     feature_collection = []
     channels = [32, 64, 128]
+    M_sampled_points = farthest_point_sample(sample_num, point_cloud)
+    # [batch, sample_num, 3]
+    new_xyz = gather_point(point_cloud, M_sampled_points)
     for i, scale in enumerate(sample_scale):
-        # [batch, sample_num, 3]
-        new_xyz = gather_point(point_cloud, farthest_point_sample(sample_num, point_cloud))
         # [batch, sample_num, scale]
         _, idx = knn_point(scale, point_cloud, new_xyz)
         # [batch, sample_num, scale, 3]
