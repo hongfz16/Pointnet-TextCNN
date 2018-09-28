@@ -282,3 +282,58 @@ range_hood: 0.940
   wardrobe: 0.450
       xbox: 0.750
 ```
+- 2018.09.28
+```
+hyperparameters:
+  N: 1024 (total pointcloud number)
+  M: 384 (sampled point number)
+  Ki: [8, 16, 32, 64, 128] (number of knn points)
+  textcnn_kernel: [1,2,3,4] * 32
+  epochs: 251
+  other: remain the same as pointnet2
+```
+```
+eval mean loss: 0.385478
+eval accuracy: 0.899109
+eval avg class acc: 0.867971
+  airplane:     1.000
+   bathtub:     0.880
+       bed:     0.980
+     bench:     0.700
+ bookshelf:     0.930
+    bottle:     0.970
+      bowl:     0.950
+       car:     0.990
+     chair:     0.960
+      cone:     0.950
+       cup:     0.750
+   curtain:     0.850
+      desk:     0.826
+      door:     0.950
+   dresser:     0.733
+flower_pot:     0.150
+ glass_box:     0.930
+    guitar:     0.990
+  keyboard:     1.000
+      lamp:     0.950
+    laptop:     1.000
+    mantel:     0.950
+   monitor:     0.980
+night_stand:    0.791
+    person:     0.850
+     piano:     0.930
+     plant:     0.780
+     radio:     0.800
+range_hood:     0.910
+      sink:     0.700
+      sofa:     0.950
+    stairs:     0.900
+     stool:     0.850
+     table:     0.890
+      tent:     0.950
+    toilet:     0.970
+  tv_stand:     0.830
+      vase:     0.850
+  wardrobe:     0.550
+      xbox:     0.850
+```
