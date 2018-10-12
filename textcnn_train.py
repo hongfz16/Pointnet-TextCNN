@@ -23,12 +23,12 @@ import modelnet_dataset
 import modelnet_h5_dataset
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--gpu', type=int, default=5, help='GPU to use [default: GPU 0]')
+parser.add_argument('--gpu', type=int, default=9, help='GPU to use [default: GPU 0]')
 parser.add_argument('--model', default='model_cls', help='Model name [default: pointnet2_cls_ssg]')
 parser.add_argument('--log_dir', default='log', help='Log dir [default: log]')
 parser.add_argument('--num_point', type=int, default=1024, help='Point Number [default: 1024]')
 parser.add_argument('--max_epoch', type=int, default=251, help='Epoch to run [default: 251]')
-parser.add_argument('--batch_size', type=int, default=16, help='Batch Size during training [default: 16]')
+parser.add_argument('--batch_size', type=int, default=20, help='Batch Size during training [default: 16]')
 parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate [default: 0.001]')
 parser.add_argument('--momentum', type=float, default=0.9, help='Initial learning rate [default: 0.9]')
 parser.add_argument('--optimizer', default='adam', help='adam or momentum [default: adam]')
@@ -37,7 +37,7 @@ parser.add_argument('--decay_rate', type=float, default=0.7, help='Decay rate fo
 parser.add_argument('--normal', action='store_true', help='Whether to use normal information')
 FLAGS = parser.parse_args()
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '5'
+os.environ['CUDA_VISIBLE_DEVICES'] = '9'
 
 EPOCH_CNT = 0
 
@@ -122,7 +122,8 @@ def train():
             tf.summary.scalar('bn_decay', bn_decay)
 
             # Get model and loss 
-            pred= MODEL.get_model(384, [8, 16, 32, 64, 128], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32, bn_decay=bn_decay)
+            # pred= MODEL.get_model(384, [8, 16, 32, 64, 128], pointclouds_pl, is_training_pl, [1, 2, 3, 4], 32, bn_decay=bn_decay)
+            pred= MODEL.get_model(384, [8, 27, 64, 125], pointclouds_pl, is_training_pl, [1, 2, 3], 32, bn_decay=bn_decay)
             MODEL.get_loss(pred, labels_pl)
             losses = tf.get_collection('losses')
             total_loss = tf.add_n(losses, name='total_loss')
